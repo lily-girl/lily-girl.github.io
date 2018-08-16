@@ -1,0 +1,169 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>完整测试类别 · lili lee's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/avatar.jpg"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/avatar.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">lili lee</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Miss lee's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about">About</a><a href="/archives">Archives</a><a href="/tags">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about">About</a><a href="/archives">Archives</a><a href="/tags">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">完整测试类别</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2018/08/16</span></span><span class="busuanzi-pv" id="busuanzi_container_page_pv"><i class="post-intro-calendar fa fa-user-o"></i><span id="busuanzi_value_page_pv"></span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="测试思想"> 测试思想</a></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p>软件测试是指使用人工或者自动的手段来运行或测定某个软件产品系统的过程，其目的是在于检验是否满足规定的需求或者弄清预期的结果与实际结果的区别。本文主要描述软件测试的类型。 </p>
+<h1 id="1-数据和数据库完整性测试"><a href="#1-数据和数据库完整性测试" class="headerlink" title="1 数据和数据库完整性测试"></a>1 数据和数据库完整性测试</h1><p>数据与数据库完整测试是指测试关系型数据库完整性原则以及数据合理性测试。 </p>
+<ul>
+<li>数据库完整性原则： 主码完整性（主码不能为空）； 外码完整性（外码必须等于对应的主码或者为空）。 </li>
+<li>数据合理性：数据在数据库中的类型，长度，索引等是否建的比较合理。</li>
+</ul>
+<p>在项目名称中，数据库和数据库进程应作为一个子系统来进行测试。在测试这些子系统时，不应将测试对象的用户界面用作数据的接口。对于数据库管理系统 (DBMS)，还需要进行深入的研究，以确定可以支持测试的工具和技术。</p>
+<p>比如，有两张表：部门和员工。部门中有部门编号，部门名称，部门经理等字段，主码为部门编号；员工表中有员工编号，员工所属部门编号，员工名称，员工类型等字段，主码为员工编号，外码为员工所属部门编号，对应部门表。  —— 如果在某条部门记录中部门编号或员工记录员工编号为空，他就违反主码完整性原则。如果某个员工所属部门的编号为##，但是##在部门编号中确找不到，这就违反外码完整性原则。 员工类型如下定义：0：职工，1：职员，2：实习生。但数据类型为Int，我们都知道Int占有4个字节，如果定义成char(1).就比原来节约空间。</p>
+<h1 id="2-白盒测试"><a href="#2-白盒测试" class="headerlink" title="2 白盒测试"></a>2 白盒测试</h1><p>白盒测试是基于代码的测试，测试人员通过阅读程序代码或者通过使用开发工具中的单步调试来判断软件的质量，一般黑盒测试由项目经理在程序员开发中来实现。白盒测试分为动态白盒测试和静态白盒测试。</p>
+<h2 id="2-1-静态白盒测试"><a href="#2-1-静态白盒测试" class="headerlink" title="2.1 静态白盒测试"></a>2.1 静态白盒测试</h2><p> 利用眼睛，浏览代码，凭借经验，找出代码中的错误或者代码中不符合书写规范的地方。比如，代码规范中规定，函数必须为动宾结构。而黑盒测试发现一个函数定义如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Function NameGet()&#123; …. &#125; 这是属于不符合开发规范的错误。 有这样一段代码: if (i&lt;0) &amp; (i&gt;=0) … 这段代码交集为整个数轴，IF语句没有必要 I=0; while(I&gt;100)&#123; J=J+100; T=J*PI;&#125;   在循环体内没有I的增加,bug产生。</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-动态白盒测试"><a href="#2-2-动态白盒测试" class="headerlink" title="2.2 动态白盒测试"></a>2.2 动态白盒测试</h2><p>利用开发工具中的调式工具进行测试。比如一段代码有4个分支，输入4组不同的测试数据使4组分支都可以走通而且结果必须正确。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">看一段代码  if(I&lt;0)&#123;  P1  &#125;else&#123;   P2  &#125;   在调试中输入I=-1,P1程序段通过， P2程序段未通过，属于动态黑盒测试的缺陷 。</span><br></pre></td></tr></table></figure>
+<h1 id="3-功能测试"><a href="#3-功能测试" class="headerlink" title="3.功能测试"></a>3.功能测试</h1><p>功能测试指测试软件各个功能模块是否正确，逻辑是否正确。  </p>
+<p>对测试对象的功能测试应侧重于所有可直接追踪到用例或业务功能和业务规则的测试需求。这种测试的目标是核实数据的接受、处理和检索是否正确，以及业务规则的实施是否恰当。此类测试基于黑盒技术，该技术通过图形用户界面 (GUI) 与应用程序进行交互，并对交互的输出或结果进行分析，以此来核实应用程序及其内部进程。功能测试的主要参考为类似于功能说明书之类的文档。   比如一个对电子商务系统，前台用户浏览商品-放入购物车-进入结账台，后台处理订单，配货，付款，发货，这一系列流程必须正确无误的走通，不能存在任何的错误。    </p>
+<h1 id="4-UI测试"><a href="#4-UI测试" class="headerlink" title="4.UI测试"></a>4.UI测试</h1><p>UI测试指测试用户界面的风格是否满足客户要求，文字是否正确，页面美工是否好看，文字，图片组合是否完美，背景是否美观，操作是否友好等等。  用户界面 (UI) 测试用于核实用户与软件之间的交互。UI 测试的目标是确保用户界面会通过测试对象的功能来为用户提供相应的访问或浏览功能。另外，UI 测试还可确保 UI 中的对象按照预期的方式运行，并符合公司或行业的标准。包括用户友好性，人性化，易操作性测试。</p>
+<p>UI测试比较主观，与测试人员的喜好有关   比如：页面基调颜色刺眼；用户登入页面比较难于找到，文字中出现错别字，页面图片范围太广等都属于UI测试中的缺陷，但是这些缺陷都不太严重。    </p>
+<h1 id="5-性能测试"><a href="#5-性能测试" class="headerlink" title="5.性能测试"></a>5.性能测试</h1><p>性能测试主要测试软件测试的性能，包括负载测试，强度测试，数据库容量测试，基准测试以及竞争测试。</p>
+<h2 id="5-1负载测试"><a href="#5-1负载测试" class="headerlink" title="5.1负载测试"></a>5.1负载测试</h2><p>负载测试是一种性能测试指数据在超负荷环境中运行，程序是否能够承担。  在这种测试中，将使测试对象承担不同的工作量，以评测和评估测试对象在不同工作量条件下的性能行为，以及持续正常运行的能力。负载测试的目标是确定并确保系统在超出最大预期工作量的情况下仍能正常运行。此外，负载测试还要评估性能特征，例如，响应时间、事务处理速率和其他与时间相关的方面。   比如，在B/S结构中用户并发量测试就是属于负载测试的用户，可以使用webload工具，模拟上百人客户同时访问网站，看系统响应时间，处理速度如何？  </p>
+<h2 id="5-2强度测试"><a href="#5-2强度测试" class="headerlink" title="5.2强度测试"></a>5.2强度测试</h2><p>强度测试是一种性能测试，他在系统资源特别低的情况下软件系统运行情况。这类测试往往可以书写系统要求的软硬件水平要求。  实施和执行此类测试的目的是找出因资源不足或资源争用而导致的错误。如果内存或磁盘空间不足，测试对象就可能会表现出一些在正常条件下并不明显的缺陷。而其他缺陷则可能由于争用共享资源（如数据库锁或网络带宽）而造成的。强度测试还可用于确定测试对象能够处理的最大工作量。   比如：一个系统在内存366M下可以正常运行，但是降低到258M下不可以运行，告诉内存不足，这个系统对内存的要求就是366M。  </p>
+<h2 id="5-3数据库容量测试"><a href="#5-3数据库容量测试" class="headerlink" title="5.3数据库容量测试"></a>5.3数据库容量测试</h2><p>数据库容量测试指通过存储过程往数据库表中插入一定数量的数据，看看相关页面是否能够及时显示数据。   数据库容量测试使测试对象处理大量的数据，以确定是否达到了将使软件发生故障的极限。容量测试还将确定测试对象在给定时间内能够持续处理的最大负载或工作量。</p>
+<p>例如，如果测试对象正在为生成一份报表而处理一组数据库记录，那么容量测试就会使用一个大型的测试数据库，检验该软件是否正常运行并生成了正确的报表。做这种测试通常通过书写存储过程向数据库某个表中插入一定数量的记录，计算相关页面的调用时间。   比如，在电子商务系统中，通过insert customer 往user表中插入10 000数据，看其是否可以正常显示顾客信息列表页面，如果要求达到最多可以处理100 000个客户，但是顾客信息列表页面不能够在规定的时间内显示出来，就需要调整程序中的SQL查询语句；如果在规定的时间内显示出来，可以将用户数分别提高到20 000 , 50 000, 100 000进行测试。  </p>
+<h2 id="5-4基准测试"><a href="#5-4基准测试" class="headerlink" title="5.4基准测试"></a>5.4基准测试</h2><p>基准测试与已知现有的系统进行比较，主要检验是否与类似的产品具有竞争性的一种测试。  如果你要开发一套财务系统软件并且你已经获得用友财务系统的性能等数据，你可以测试你这套系统，看看哪些地方比用友财务系统好，哪些地方差？以便改进自己的系统，也可为产品广告提供数据。   </p>
+<h2 id="5-5竞争测试"><a href="#5-5竞争测试" class="headerlink" title="5.5竞争测试"></a>5.5竞争测试</h2><p>软件竞争使用各种资源（数据纪录，内存等），看他与其他相关系统对资源的争夺能力。比如：一台机器上即安装您的财务系统，又安装用友财务系统。当CPU占有率下降后，看看是否能够强过用友财务系统，而是自己的系统能够正常运行？    </p>
+<h1 id="6-安全性和访问控制测试"><a href="#6-安全性和访问控制测试" class="headerlink" title="6. 安全性和访问控制测试"></a>6. 安全性和访问控制测试</h1><p>安全性和访问控制测试侧重于安全性的两个关键方面：  应用程序级别的安全性（包括对数据或业务功能的访问）、系统级别的安全性（包括对系统的登录或远程访问）。  </p>
+<h2 id="6-1应用程序级别的安全性"><a href="#6-1应用程序级别的安全性" class="headerlink" title="6.1应用程序级别的安全性"></a>6.1应用程序级别的安全性</h2><p>可确保：在预期的安全性情况下，主角只能访问特定的功能或用例，或者只能访问有限的数据。例如，可能会允许所有人输入数据，创建新账户，但只有管理员才能删除这些数据或账户。如果具有数据级别的安全性，测试就可确保“用户类型一”能够看到所有客户消息（包括财务数据），而“用户二”只能看见同一客户的统计数据。 比如B/S系统，不通过登入页面，直接输入URL,看其是否能够进入系统？ </p>
+<h2 id="6-2系统级别的安全性"><a href="#6-2系统级别的安全性" class="headerlink" title="6.2系统级别的安全性"></a>6.2系统级别的安全性</h2><p>可确保只有具备系统访问权限的用户才能访问应用程序，而且只能通过相应的网关来访问。 比如输入管理员账户，检查其密码是否容易猜取，或者可以从数据库中获得？ </p>
+<h1 id="7-故障转移和恢复测试"><a href="#7-故障转移和恢复测试" class="headerlink" title="7.故障转移和恢复测试"></a>7.故障转移和恢复测试</h1><p>故障转移和恢复测试指当主机软硬件发生灾难时候，备份机器是否能够正常启动，使系统是否可以正常运行，这对于电信，银行等领域的软件是十分重要的。 故障转移和恢复测试可确保测试对象能成功完成故障转移，并能从导致意外数据损失或数据完整性破坏的各种硬件、软件或网络故障中恢复。</p>
+<ul>
+<li>故障转移测试可确保：对于必须持续运行的系统，一旦发生故障，备用系统就将不失时机地“顶替”发生故障的系统，以避免丢失任何数据或事务。</li>
+<li>恢复测试是一种对抗性的测试过程。在这种测试中，将把应用程序或系统置于极端的条件下（或者是模拟的极端条件下），以产生故障（例如设备输入/输出 (I/O) 故障或无效的数据库指针和关健字）。然后调用恢复进程并监测和检查应用程序和系统，核实应用程序或系统和数据已得到了正确的恢复。一定要注意主备定时备份 比如电信系统，突然主机程序发生死机，备份机器是否能够启动，使系统能够正常运行，从而不影响用户打电话？ </li>
+</ul>
+<h1 id="8-配置测试-又叫兼容性测试。"><a href="#8-配置测试-又叫兼容性测试。" class="headerlink" title="8.配置测试 又叫兼容性测试。"></a>8.配置测试 又叫兼容性测试。</h1><p>配置测试核实测试对象在不同的软件和硬件配置中的运行情况。在大多数生产环境中，客户机工作站、网络连接和数据库服务器的具体硬件规格会有所不同。客户机工作站可能会安装不同的软件例如，应用程序、驱动程序等而且在任何时候，都可能运行许多不同的软件组合，从而占用不同的资源。（如浏览器版本，操作系统版本等） 下面列出主要配置测试 </p>
+<ul>
+<li>浏览器兼容性： 测试软件在不同产商的浏览器下是否能够正确显示与运行； 比如测试IE，Natscape浏览器下是否可以运行这套软件？ </li>
+<li>操作系统兼容性 ：测试软件在不同操作系统下是否能够正确显示与运行； 比如测试WINDOWS98,WINDOWS 2000,WINDOWS XP,LINU, UNIX下是否可以运行这套软件？ </li>
+<li>硬件兼容性： 测试与硬件密切相关的软件产品与其他硬件产品的兼容性，比如该软件是少在并口设备中的，测试同时使用其他并口设备，系统是否可以正确使用. 比如在INTER,舒龙CPU芯片下系统是否能够正常运行？ 这样的测试必须建立测试实验室，在各种环境下进行测试。 </li>
+</ul>
+<h1 id="9-安装测试"><a href="#9-安装测试" class="headerlink" title="9.安装测试"></a>9.安装测试</h1><p> 安装测试有两个目的。</p>
+<ul>
+<li>第一个目的是确保该软件在正常情况和异常情况的不同条件下：例如，进行首次安装、升级、完整的或自定义的安装_都能进行安装。异常情况包括磁盘空间不足、缺少目录创建权限等。</li>
+<li><p>第二个目的是核实软件在安装后可立即正常运行。这通常是指运行大量为功能测试制定的测试。 </p>
+<p>安装测试包括测试安装代码以及安装手册。安装手册提供如何进行安装，安装代码提供安装一些程序能够运行的基础数据。 </p>
+</li>
+</ul>
+<h1 id="10-多语种测试-又称本地化测试"><a href="#10-多语种测试-又称本地化测试" class="headerlink" title="10.多语种测试 又称本地化测试"></a>10.多语种测试 又称本地化测试</h1><p>是指为各个地方开发产品的测试，如英文版，中文版等等，包括程序是否能够正常运行，界面是否符合当地习俗，快捷键是否正常起作用等等，特别测试在A语言环境下运行B语言软件（比如在英文win98下试图运行中文版的程序），出现现象是否正常。 </p>
+<p> 本地化测试还要考虑：</p>
+<ul>
+<li>当语言从A翻译到B，字符长度变化是否影响页面效果。比如中文软件中有个按键叫“看广告”，翻译到英文版本中为 “View advertisement”可能影响页面的美观程度 </li>
+<li>要考虑同一单词在各个国家的不同意思，比如football在英文中为足球，而美国人使用中可能理解为美式橄榄球。</li>
+<li>要考虑各个国家的民族习惯，比如龙个美国中被理解邪恶的象征，但翻译到中国，中国人认为为吉祥的象征。 </li>
+</ul>
+<h1 id="11-文字测试"><a href="#11-文字测试" class="headerlink" title="11.文字测试"></a>11.文字测试</h1><p> 文字测试测试软件中是否拼写正确，是否易懂，不存在二义性，没有语法错误；文字与内容是否有出入等等，包括图片文字。 比如：“比如，请输入正确的证件号码！”何谓正确的证件号码，证件可以为身份证，驾驶证，也可为军官证，如果改为“请输入正确的身份证号码！”用户就比较容易理解了。 </p>
+<h1 id="12-分辨率测试"><a href="#12-分辨率测试" class="headerlink" title="12.分辨率测试"></a>12.分辨率测试</h1><p>测试在不同分辨率下，界面的美观程度，分为800<em>600，1024</em>768，1152<em>864，1280</em>768，1280<em>1024，1200</em>1600大小字体下测试。一个好的软件要有一个极佳的分辨率，而在其他分辨率下也都能可以运行。 </p>
+<h1 id="13发布测试"><a href="#13发布测试" class="headerlink" title="13发布测试"></a>13发布测试</h1><p> 主要在产品发布前对一些附带产品，比如说明书，广告稿等进行测试 </p>
+<ul>
+<li>说明书测试： 主要为语言检查（检查说明书语言是否正确，用词是否易于理解）、功能检查（功能是否描述完全，或者描述了并没有的功能等）、图片检查（检查图片是否正确 ）</li>
+<li>宣传材料测试： 主要测试产品中的附带的宣传材料中的语言，描述功能，图片。 </li>
+<li>帮助文件测试：帮助文件是否正确、易懂、是否人性化。最好能够提供检索功能。 </li>
+<li>广告用语： 产品出公司前的广告材料文字、功能、图片、人性化的检查 。</li>
+</ul>
+<h1 id="14-文档审核测试"><a href="#14-文档审核测试" class="headerlink" title="14 文档审核测试"></a>14 文档审核测试</h1><p> 文档审核测试目前越来越引起人们的重视，软件质量不是检查出来的，而是融进软件开发中来。前置软件测试发越来越受到重视。请看一个资料： 文档审核测试主要包括需求文档测试，设计文档测试，为前置软件测试测试中的一部分。 </p>
+<ul>
+<li>需求文档测试：     主要测试需求中是否存在逻辑矛盾以及需求在技术上是否可以实现； </li>
+<li><p>设计文档测试：     测试设计是否符合全部需求以及设计是否合理。 </p>
+<p>总结 </p>
+</li>
+</ul>
+<p>据美国软件质量安全中心2000年对美国一百家知名的软件厂商统计，得出这样一个结论：软件缺陷在开发前期发现比在开发后期发现资金，人力上节约90%；软件缺陷在推向市场前发现比在推出后发现资金，人力上节约90%。所以说软件的缺陷应该尽早发现。不是所有的软件都要进行任何类型的软件测试的，可以根据产品的具体情况进行组装测试不同的类型。</p>
+</article><!-- lincense--><div class="post-paginator"><a class="nextSlogan" href="/2018/08/15/学习网站/" title="学习网站"><span>NextPost ></span><br><span class="nextTitle">学习网站</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数据和数据库完整性测试"><span class="toc-number">1.</span> <span class="toc-text">1 数据和数据库完整性测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-白盒测试"><span class="toc-number">2.</span> <span class="toc-text">2 白盒测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-静态白盒测试"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 静态白盒测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-动态白盒测试"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 动态白盒测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-功能测试"><span class="toc-number">3.</span> <span class="toc-text">3.功能测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-UI测试"><span class="toc-number">4.</span> <span class="toc-text">4.UI测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-性能测试"><span class="toc-number">5.</span> <span class="toc-text">5.性能测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1负载测试"><span class="toc-number">5.1.</span> <span class="toc-text">5.1负载测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2强度测试"><span class="toc-number">5.2.</span> <span class="toc-text">5.2强度测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3数据库容量测试"><span class="toc-number">5.3.</span> <span class="toc-text">5.3数据库容量测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4基准测试"><span class="toc-number">5.4.</span> <span class="toc-text">5.4基准测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5竞争测试"><span class="toc-number">5.5.</span> <span class="toc-text">5.5竞争测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-安全性和访问控制测试"><span class="toc-number">6.</span> <span class="toc-text">6. 安全性和访问控制测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1应用程序级别的安全性"><span class="toc-number">6.1.</span> <span class="toc-text">6.1应用程序级别的安全性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2系统级别的安全性"><span class="toc-number">6.2.</span> <span class="toc-text">6.2系统级别的安全性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-故障转移和恢复测试"><span class="toc-number">7.</span> <span class="toc-text">7.故障转移和恢复测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-配置测试-又叫兼容性测试。"><span class="toc-number">8.</span> <span class="toc-text">8.配置测试 又叫兼容性测试。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-安装测试"><span class="toc-number">9.</span> <span class="toc-text">9.安装测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-多语种测试-又称本地化测试"><span class="toc-number">10.</span> <span class="toc-text">10.多语种测试 又称本地化测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11-文字测试"><span class="toc-number">11.</span> <span class="toc-text">11.文字测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12-分辨率测试"><span class="toc-number">12.</span> <span class="toc-text">12.分辨率测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13发布测试"><span class="toc-number">13.</span> <span class="toc-text">13发布测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14-文档审核测试"><span class="toc-number">14.</span> <span class="toc-text">14 文档审核测试</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
